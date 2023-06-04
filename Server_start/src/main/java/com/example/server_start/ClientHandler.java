@@ -20,6 +20,7 @@ public class ClientHandler extends Thread {
             out = new PrintWriter(clientSocket.getOutputStream(),true);
         } catch (IOException e) {
             throw new RuntimeException(e);
+
         }
     }
 
@@ -38,13 +39,6 @@ public class ClientHandler extends Thread {
         }
     }
 
-   // public void sendClientList(List<String> clientList){
-        //out.println("Client_List");
-        //for(String client: clientList){
-        //    out.println(client);
- //       }
-       // out.println("End of client list");
-   // }
 
 
 
@@ -62,7 +56,6 @@ public class ClientHandler extends Thread {
                 server.updateMessages(message,this);
 
             }
-            //server.getClients().remove(this);
         }
         catch(Exception e){
             System.out.println(e);

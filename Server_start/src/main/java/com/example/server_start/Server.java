@@ -10,11 +10,10 @@ import java.util.List;
 
 public class Server extends Thread{
     private List<PrintWriter> clientWriters;
-    private List<BufferedReader> clientReaders;
     private List<ClientHandler>clients;
-    List<ClientHandler>connectedClients;
-    BufferedReader reader;
+
     ServerSocket ss;
+
 
 
     public void run() {
@@ -57,7 +56,6 @@ public class Server extends Thread{
         for(ClientHandler client: clients){
             clientNames.add(client.getClientName());
         }
-        //clientHandler.sendClientList(clientNames);
     }
 
     public void updateMessages(String message,ClientHandler sender){
@@ -72,6 +70,7 @@ public class Server extends Thread{
 
     public void closeServer() throws IOException {
         broadcastMessage("Closing server...");
+        broadcastMessage("Disconnected.");
         for(ClientHandler client:clients){
             client.stopClient();
         }

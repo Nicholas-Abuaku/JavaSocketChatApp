@@ -35,10 +35,13 @@ public class HelloController {
     private TextField UserNameField;
 
     private String userName;
+    @FXML
+    private TextField serverIPField;
+    @FXML
+    private TextField portField;
 
     public HelloController() throws IOException {
-
-        c = new Client();
+        //c = new Client();
         executor = Executors.newSingleThreadExecutor();
     }
 
@@ -49,7 +52,9 @@ public class HelloController {
 
     @FXML
     void startClient(MouseEvent event) throws IOException, InterruptedException {
-        executor.submit(c);
+        String serverIP = serverIPField.getText();
+        Integer serverPort = Integer.parseInt(portField.getText());
+        executor.submit(c = new Client(serverIP,serverPort));
         TimeUnit.SECONDS.sleep(2);
         Thread refreshMessages = new Thread(()->{
             while(true){
@@ -60,9 +65,9 @@ public class HelloController {
                             chatBox.appendText(message+"\n");
                         });
                     }
-                } catch(IOException e){
-                    e.printStackTrace();
-                    chatBox.appendText("IOException"+"\n");
+                } catch(Exception e){
+                    //e.printStackTrace();
+                    chatBox.appendText("Error: Please check correct IP and port");
                 }
             }
         });

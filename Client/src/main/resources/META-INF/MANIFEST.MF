@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: com.chatapp.client.client.ClientApplication
+Class-Path: javafx-graphics-20-ea+4.jar javafx-fxml-20-ea+4-win.jar java
+ fx-controls-20-ea+4.jar javafx-graphics-20-ea+4-win.jar javafx-base-20-
+ ea+4-win.jar javafx-base-20-ea+4.jar javafx-controls-20-ea+4-win.jar ja
+ vafx-fxml-20-ea+4.jar
+

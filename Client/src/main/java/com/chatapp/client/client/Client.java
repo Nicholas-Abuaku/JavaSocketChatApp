@@ -13,15 +13,24 @@ public class Client extends Thread {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
+    private String serverIP;
+    private Integer serverPort;
+
+    Client(String serverIP, Integer serverPort){
+        this.serverIP = serverIP;
+        this.serverPort = serverPort;
+
+    }
 
 public void run() {
         try{
-            socket = new Socket("localhost",8888);
+            socket = new Socket(serverIP,serverPort);
             out = new PrintWriter(socket.getOutputStream(),true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         }
-        catch(Exception e){e.printStackTrace();}
+        catch(Exception e){
+            System.out.println("Connection Error: Check server IP and Port");}
     }
     
     public void sendMessage(String message){
